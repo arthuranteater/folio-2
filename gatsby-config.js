@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `huntCodes`,
-    description: `software development`,
-    author: `@ Hunt Applegate`,
+    description: `website builder, tech enthusiast`,
+    author: `@huntCodes`,
+    // siteUrl: `https://www.example.com`
   },
   plugins: [
     "gatsby-plugin-styled-components",
@@ -50,7 +51,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-favicon",
       options: {
-        logo: "",
+        logo: "./public/favicon-32x32.png",
         injectHTML: true,
         icons: {
           android: true,
@@ -68,5 +69,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
+    // `gatsby-plugin-sitemap`,
   ],
 }
