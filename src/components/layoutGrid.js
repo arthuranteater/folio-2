@@ -4,7 +4,7 @@ import React from "react"
 import styled from "styled-components"
 import Header from "./header"
 import { useStaticQuery, graphql } from "gatsby"
-import Nav from "./nav"
+import Nav from "./navbar"
 
 const Grid = styled.div`
   min-height: 100vh;
