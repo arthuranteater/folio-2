@@ -15,7 +15,11 @@ const Title = styled.h2`
   color: #293e60;
   text-align: center;
   font-family: "Raleway", sans-serif;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+`
+
+const Divider = styled.div`
+  margin-bottom: 100px;
 `
 
 const ContentGrid = styled.div`
@@ -62,6 +66,7 @@ export default () => {
   const breakpoints = useBreakpoint()
   return (
     <>
+      <Divider id="about" />
       {/* {breakpoints.sm ? "" : setSize(false)} */}
       <Title>My Story</Title>
       {/* {breakpoints.sm ? "" : setSize(false)} */}
@@ -76,27 +81,23 @@ export default () => {
           <PContainer>
             <StyledP>
               I founded huntCodes in 2018 to help businesses create lightning
-              fast SEO friendly websites. We've worked to convert or upgrade
+              fast SEO friendly websites. I've worked to convert or upgrade
               existing sites with new look or designed and built entirely from
               scratch!
             </StyledP>
             <StyledP>
               My interest in coding started in 2017. I took a part-time class
-              with the Data Science program at Galvanize. I knew I was getting
-              into something that could challenge me. I decided to dive deeper!
-              I enrolled in the Web Development Immersive Program through
-              Galvanize in June of 2018. The 6-month program was fun and
-              challenging. I completed the infamous capstone project, where you
-              are challeged to incorporate multiple new technologies into a full
-              stack application, generate a demo, and deliver a presentation all
-              within a week. After graduation I realized though that my journey
-              into software development had only just begun...
+              with the Data Science program and attended free coding meetups. I
+              found coding to be fun and challenging, so I decided to dive
+              deeper! I enrolled in the Web Development Immersive Program in
+              June of 2018. After graduating I realized that my journey into
+              coding had only just begun.
             </StyledP>
             <StyledP>
               I'm currently working as an Assistant Instructor at 2U (formerly
-              Trilogy education) for their 6-month web development boot camp.
-              And I'm building websites for huntCodes! Check out some of my
-              sites above and visit my blog, arthuranteater!
+              Trilogy education) for their 6-month web development boot camp and
+              building websites for huntCodes! Check out some of my sites above
+              and visit my blog, arthuranteater!
             </StyledP>
           </PContainer>
         </ContentGrid>

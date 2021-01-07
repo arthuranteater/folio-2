@@ -4,7 +4,9 @@ import Layout from "../components/layoutGrid"
 import Image from "../components/image"
 import SEO from "../components/seo"
 import About from "../components/about"
+import Intro from "../components/intro"
 import { Helmet } from "react-helmet"
+import Projects from "../components/projects"
 
 const IndexPage = () => (
   <>
@@ -21,9 +23,8 @@ const IndexPage = () => (
     </Helmet>
     <Layout>
       <SEO title="Home" />
-      <h1>I'm Hunt Applegate</h1>
-      <p>website builder, tech enthusiast</p>
-      <p>Now go build something great.</p>
+      <Intro />
+      <Projects />
       <About />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
@@ -119,11 +120,9 @@ const IndexPage = () => (
         gravida elit sit amet tempor commodo. Nulla facilisi. Duis malesuada
         massa sed augue vehicula dictum.
       </p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
-      </div>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+      </div> */}
     </Layout>
   </>
 )
