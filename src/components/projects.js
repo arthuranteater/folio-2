@@ -7,14 +7,20 @@ import { useStaticQuery, graphql } from "gatsby"
 
 //above the imported img can be used from Gatsby image component for lazy loading
 
-const AboutContainer = styled.div`
-  /* display: flex; */
+const CardContainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 4px;
-  /* justify-content: center; */
-  /* justify-items: center; */
-  /* align-items: center; 5px rounded corners */
+  /* display: flex;
+  justify-content: center;
+  justify-items: center; */
+`
+
+const CardTitle = styled.h4`
+  color: #293e60;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 1rem;
 `
 
 const Title = styled.h2`
@@ -30,63 +36,40 @@ const Divider = styled.div`
 
 const ContentGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
   padding: 2rem;
 `
 
-const AvatarContainer = styled.div`
-  max-height: 200px;
-  max-width: 200px;
-  /* width: 100%; */
-  padding: 10px;
-`
-
-const CircleAvatar = styled.img`
-  border-radius: 50%;
-  border: 2px solid #293e60;
-  /* height: 200px;
-  width: 200px; */
-`
-
-const StyledP = styled.p`
-  line-height: 1.5;
+const CardLi = styled.li`
   font-family: "Raleway", sans-serif;
   font-weight: bold;
+  margin-bottom: 4px;
 `
 
-//styled from smakosh
+const CardUl = styled.ul`
+  list-style-type: none;
+`
 
-export const Card = styled.div`
+const Card = styled.div`
   padding: 1rem;
-  background: ${({ theme }) => (theme === "light" ? "#fff" : "#181717")};
-  height: 100%;
+  background: light grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 4px;
 `
 
-export const TitleWrap = styled.div`
+const CardFlex = styled.div`
+  max-width: 960;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-`
-
-//styled from smakosh
-export const Container = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 90%;
-  @media (min-width: 601px) {
-    width: 90%;
-  }
-  @media (min-width: 993px) {
-    width: 80%;
-  }
 `
 
 export default () => {
   const {
     github: {
       viewer: {
-        repositories: { edges },
+        pinnedItems: { edges },
       },
     },
   } = useStaticQuery(
@@ -94,25 +77,32 @@ export default () => {
       {
         github {
           viewer {
-            repositories(
-              first: 8
-              orderBy: { field: STARGAZERS, direction: DESC }
-            ) {
+            id
+            name
+            bio
+            avatarUrl
+            location
+            url
+            company
+            companyHTML
+            bioHTML
+            anyPinnableItems(type: REPOSITORY)
+            pinnedItems(last: 6) {
               edges {
                 node {
-                  id
-                  name
-                  url
-                  description
-                  stargazers {
-                    totalCount
-                  }
-                  forkCount
-                  languages(first: 3) {
-                    nodes {
-                      id
-                      name
+                  ... on GitHub_Repository {
+                    id
+                    description
+                    homepageUrl
+                    updatedAt
+                    name
+                    collaborators {
+                      nodes {
+                        name
+                        login
+                      }
                     }
+                    url
                   }
                 }
               }
@@ -125,8 +115,38 @@ export default () => {
   return (
     <>
       <Divider id="projects" />
-      <Title>Latest Projects</Title>
-      <AboutContainer></AboutContainer>
+      <Title>Github Projects</Title>
+      <CardContainer>
+        <ContentGrid>
+          {edges.map(repo => {
+            const { node } = repo
+            return (
+              <Card key={node.id}>
+                <CardTitle>{node.name}</CardTitle>
+                <CardUl>
+                  <CardLi>{node.description}</CardLi>
+                  <CardLi>
+                    Contributors:{" "}
+                    {node.collaborators.nodes.map(user => (
+                      <span>{`${user.name}, ${user.login}`}</span>
+                    ))}
+                  </CardLi>
+                  <CardLi>
+                    <a href={node.homepageUrl} target="_blank">
+                      Site
+                    </a>
+                  </CardLi>
+                  <CardLi>
+                    <a href={node.url} target="_blank">
+                      Repo
+                    </a>
+                  </CardLi>
+                </CardUl>
+              </Card>
+            )
+          })}
+        </ContentGrid>
+      </CardContainer>
     </>
   )
 }

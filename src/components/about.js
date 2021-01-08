@@ -68,7 +68,7 @@ export default () => {
     <>
       <Divider id="about" />
       {/* {breakpoints.sm ? "" : setSize(false)} */}
-      <Title>My Story</Title>
+      <Title>About Me</Title>
       {/* {breakpoints.sm ? "" : setSize(false)} */}
       <AboutContainer>
         <ContentGrid small={breakpoints.sm ? true : false}>
@@ -84,14 +84,6 @@ export default () => {
               fast SEO friendly websites. I've worked to convert or upgrade
               existing sites with new look or designed and built entirely from
               scratch!
-            </StyledP>
-            <StyledP>
-              My interest in coding started in 2017. I took a part-time class
-              with the Data Science program and attended free coding meetups. I
-              found coding to be fun and challenging, so I decided to dive
-              deeper! I enrolled in the Web Development Immersive Program in
-              June of 2018. After graduating I realized that my journey into
-              coding had only just begun.
             </StyledP>
             <StyledP>
               I'm currently working as an Assistant Instructor at 2U (formerly

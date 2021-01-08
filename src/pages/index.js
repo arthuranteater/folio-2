@@ -7,6 +7,7 @@ import About from "../components/about"
 import Intro from "../components/intro"
 import { Helmet } from "react-helmet"
 import Projects from "../components/projects"
+import Carousel from "../components/carousel"
 
 const IndexPage = () => (
   <>
@@ -23,6 +24,7 @@ const IndexPage = () => (
     </Helmet>
     <Layout>
       <SEO title="Home" />
+      <Carousel />
       <Intro />
       <Projects />
       <About />
