@@ -114,7 +114,7 @@ export default () => {
   )
   return (
     <>
-      <Divider id="projects" />
+      <Divider id="github" />
       <Title>Github Projects</Title>
       <CardContainer>
         <ContentGrid>

@@ -68,7 +68,7 @@ export default () => {
     <>
       {() => hide()}
       {hide ? (
-        <div>
+        <div id="sites">
           <motion.h1
             className="container"
             variants={container}
@@ -87,7 +87,7 @@ export default () => {
               </motion.span>
             ))}
           </motion.h1>
-          <ImageContainer
+          {/* <ImageContainer
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, type: "tween" }}
@@ -97,7 +97,7 @@ export default () => {
               src={CodingDude}
               alt="codingDude"
             />
-          </ImageContainer>
+          </ImageContainer> */}
         </div>
       ) : (
         <></>

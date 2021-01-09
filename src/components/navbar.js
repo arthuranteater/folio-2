@@ -59,7 +59,7 @@ const StyledLink = styled.a`
   }
 `
 
-const sections = ["projects", "about", "contact"]
+const sections = ["sites", "github", "about", "contact"]
 
 export default () => {
   const breakpoints = useBreakpoint()

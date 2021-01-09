@@ -24,8 +24,8 @@ const IndexPage = () => (
     </Helmet>
     <Layout>
       <SEO title="Home" />
-      <Carousel />
       <Intro />
+      <Carousel />
       <Projects />
       <About />
       <p>
