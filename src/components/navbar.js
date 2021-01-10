@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Header from "./header"
 import { useStaticQuery, graphql } from "gatsby"
@@ -8,6 +8,7 @@ import { useBreakpoint } from "gatsby-plugin-breakpoints"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import ScrollBar from "./scrollbar"
+import { useViewportScroll } from "framer-motion"
 
 // ;<i class="fas fa-bars"></i>
 
@@ -51,24 +52,37 @@ const Links = styled.div`
 
 const StyledLink = styled.a`
   color: white;
-  opacity: 0.8;
+  opacity: ${}
   text-decoration: none;
   margin-left: 20px;
   &:hover {
     opacity: 1;
   }
+
 `
 
 const sections = ["sites", "github", "about", "contact"]
 
 export default () => {
   const breakpoints = useBreakpoint()
+  const { scrollYProgress } = useViewportScroll()
+  const [y, setY] = useState(0)
+
+  scrollYProgress.onChange(y => {
+    setY(y * 100)
+  })
+
   return (
     <Container>
       <ScrollBar />
       <Row>
         <Title>{`${"< huntCodes />"}`}</Title>
-
+        {/* <input
+          value={y}
+          onChange={)}
+          // type="hidden"
+        /> */}
+        <div>{console.log("y", y)}</div>
         <Links>
           {breakpoints.sm ? (
             <FontAwesomeIcon icon={faBars} />
