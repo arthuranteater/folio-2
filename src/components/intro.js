@@ -7,8 +7,7 @@ import { useBreakpoint } from "gatsby-plugin-breakpoints"
 import { motion } from "framer-motion"
 import CodingDude from "../images/code_development_600.png"
 
-const str = "Welcome to huntCodes!"
-const str2 = "I'm Hunt, a web developer!"
+const str = "Welcome to huntCodes! Looking to build a site?"
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -23,10 +22,10 @@ const container = {
 }
 
 const container2 = {
-  hidden: { opacity: 1, scale: 0 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    scale: 1,
+    // scale: 1,
     transition: {
       delayChildren: 0.6,
       staggerChildren: 0.2,
@@ -42,12 +41,21 @@ const item = {
   },
 }
 
-// const styledH = styled.h1`
-//   color: #293e60;
-//   text-align: center;
-//   font-family: "Raleway", sans-serif;
-//   margin-bottom: 2rem;
-// `
+const styledH = styled(motion.h1)`
+  color: #293e60;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 2rem;
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.05,
+    },
+  },
+`
 
 const ImageContainer = styled(motion.div)`
   height: 400px;
@@ -59,18 +67,33 @@ const ImageContainer = styled(motion.div)`
 export default () => {
   const [show, setShow] = useState(true)
   const breakpoints = useBreakpoint()
-  const hide = () => {
-    setTimeout(function () {
-      setShow(false)
-    }, 4000)
-  }
+  //   setTimeout(function () {
+  //     setShow(false)
+  //   }, 6000)
+
   return (
     <>
-      {() => hide()}
-      {hide ? (
-        <div id="sites">
+      <div id="sites">
+        {show ? (
           <motion.h1
-            className="container"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+            style={{
+              color: "#293e60",
+              textAlign: "center",
+              fontFamily: "'Raleway', sans-serif",
+              //   marginBottom: "1rem",
+            }}
+          >
+            {str.split("").map((letter, index) => (
+              <motion.span key={index} variants={item}>
+                {letter}
+              </motion.span>
+            ))}
+          </motion.h1>
+        ) : (
+          <motion.h1
             variants={container}
             initial="hidden"
             animate="visible"
@@ -87,7 +110,14 @@ export default () => {
               </motion.span>
             ))}
           </motion.h1>
-          {/* <ImageContainer
+        )}
+      </div>
+    </>
+  )
+}
+
+{
+  /* <ImageContainer
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, type: "tween" }}
@@ -97,11 +127,5 @@ export default () => {
               src={CodingDude}
               alt="codingDude"
             />
-          </ImageContainer> */}
-        </div>
-      ) : (
-        <></>
-      )}
-    </>
-  )
+          </ImageContainer> */
 }

@@ -115,7 +115,7 @@ export default () => {
   return (
     <>
       <Divider id="github" />
-      <Title>Github Projects</Title>
+      <Title>Pinned Github Repos</Title>
       <CardContainer>
         <ContentGrid>
           {edges.map(repo => {

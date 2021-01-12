@@ -19,6 +19,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 3px 47px;
   grid-gap: 0px;
+  z-index: 999;
   /* display: flex;
   color: white;
   background-color: #293e60;
@@ -52,24 +53,35 @@ const Links = styled.div`
 
 const StyledLink = styled.a`
   color: white;
-  opacity: ${}
+  opacity: ${({ active }) => (active ? 1 : 0.8)};
   text-decoration: none;
   margin-left: 20px;
   &:hover {
     opacity: 1;
   }
-
 `
+
+const activate = y => {
+  if (y < 20) {
+    return "sites"
+  } else if (y < 60) {
+    return "github"
+  } else if (y < 80) {
+    return "about"
+  } else {
+    return "contact"
+  }
+}
 
 const sections = ["sites", "github", "about", "contact"]
 
 export default () => {
   const breakpoints = useBreakpoint()
   const { scrollYProgress } = useViewportScroll()
-  const [y, setY] = useState(0)
+  const [active, setActive] = useState("sites")
 
   scrollYProgress.onChange(y => {
-    setY(y * 100)
+    setActive(activate(y * 100))
   })
 
   return (
@@ -82,13 +94,15 @@ export default () => {
           onChange={)}
           // type="hidden"
         /> */}
-        <div>{console.log("y", y)}</div>
+        <div>{console.log("active", active)}</div>
         <Links>
           {breakpoints.sm ? (
             <FontAwesomeIcon icon={faBars} />
           ) : (
             sections.map(sec => (
-              <StyledLink href={`/#${sec}`}>{sec.toUpperCase()}</StyledLink>
+              <StyledLink active={sec === active} href={`/#${sec}`}>
+                {sec.toUpperCase()}
+              </StyledLink>
             ))
           )}
         </Links>

@@ -68,7 +68,7 @@ export default () => {
     <>
       <Divider id="about" />
       {/* {breakpoints.sm ? "" : setSize(false)} */}
-      <Title>About Me</Title>
+      <Title>A Web Developer</Title>
       {/* {breakpoints.sm ? "" : setSize(false)} */}
       <AboutContainer>
         <ContentGrid small={breakpoints.sm ? true : false}>
@@ -80,14 +80,14 @@ export default () => {
           </AvatarContainer>
           <PContainer>
             <StyledP>
-              I founded huntCodes in 2018 to help businesses create lightning
-              fast SEO friendly websites. I've worked to convert or upgrade
-              existing sites with new look or designed and built entirely from
-              scratch!
+              Hi, I'm Hunt. I founded huntCodes in 2018 to help businesses
+              create lightning fast, SEO optimized, mobile-first websites and
+              full stack applications. I've worked to upgrade existing sites
+              with new look and built entirely from scratch!
             </StyledP>
             <StyledP>
-              I'm currently working as an Assistant Instructor at 2U (formerly
-              Trilogy education) for their 6-month web development boot camp and
+              I work as an Assistant Instructor at 2U (formerly Trilogy
+              education) for their 6-month web development boot camp and
               building websites for huntCodes! Check out some of my sites above
               and visit my blog, arthuranteater!
             </StyledP>
