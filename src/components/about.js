@@ -4,6 +4,13 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import Image from "./image" //img can be used from for lazy loading
 import { useBreakpoint } from "gatsby-plugin-breakpoints"
+import Resume from "../files/2021_Hunt_Applegate_Resume.pdf"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faFileAlt,
+  faFilePdf,
+  faFileDownload,
+} from "@fortawesome/free-solid-svg-icons"
 
 const AboutContainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -60,6 +67,38 @@ const StyledP = styled.p`
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 `
+const StyledH = styled.h5`
+  opacity: 0.9;
+`
+const ButtonLink = styled.a`
+  width: 200px;
+  color: white;
+  background: #293e60;
+  font-family: Raleway, sans-serif;
+  text-decoration: none;
+  border-radius: 20px;
+  &:hover ${StyledH} {
+    opacity: 1;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    color: #293e60;
+    background-color: white;
+    outline: 0;
+    border: 1px solid #293e60;
+  }
+`
+const Row = styled.div`
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  background: #293e60;
+  border-radius: 10px;
+`
 
 export default () => {
   //   const [sm, setSize] = useState(true)
@@ -92,6 +131,16 @@ export default () => {
               and visit my blog, arthuranteater!
             </StyledP>
           </PContainer>
+          <ButtonLink title="Download pdf" href={Resume} target="_blank">
+            <Row>
+              <StyledH>Resume</StyledH>
+              <FontAwesomeIcon
+                style={{ marginLeft: "10px" }}
+                icon={faFileDownload}
+                size="lg"
+              />
+            </Row>
+          </ButtonLink>
         </ContentGrid>
       </AboutContainer>
     </>

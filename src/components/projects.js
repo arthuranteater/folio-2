@@ -4,6 +4,13 @@ import React from "react"
 import styled from "styled-components"
 import Image from "./image"
 import { useStaticQuery, graphql } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faGithubSquare,
+  faGithub,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons"
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 
 //above the imported img can be used from Gatsby image component for lazy loading
 
@@ -65,6 +72,19 @@ const CardFlex = styled.div`
   flex-direction: row;
 `
 
+const Row = styled.div`
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  font-family: "Raleway", sans-serif;
+  padding: 2px;
+`
+
+const tube = {
+  link: "https://www.youtube.com/watch?v=dgFHdlA2UZ8",
+}
+
 export default () => {
   const {
     github: {
@@ -122,6 +142,7 @@ export default () => {
             const { node } = repo
             return (
               <Card key={node.id}>
+                {console.log("node", node.id, "name", node.name)}
                 <CardTitle>{node.name}</CardTitle>
                 <CardUl>
                   <CardLi>{node.description}</CardLi>
@@ -131,17 +152,37 @@ export default () => {
                       <span>{`${user.name}, ${user.login}`}</span>
                     ))}
                   </CardLi>
-                  <CardLi>
-                    <a href={node.homepageUrl} target="_blank">
-                      Site
-                    </a>
-                  </CardLi>
-                  <CardLi>
-                    <a href={node.url} target="_blank">
-                      Repo
-                    </a>
-                  </CardLi>
                 </CardUl>
+                <Row>
+                  <a
+                    href={node.homepageUrl}
+                    style={{ color: "inherit" }}
+                    target="_blank"
+                    title="View website"
+                  >
+                    <FontAwesomeIcon icon={faExternalLinkAlt} size="lg" />
+                  </a>
+                  <a
+                    href={node.url}
+                    style={{ color: "inherit", marginLeft: "10px" }}
+                    target="_blank"
+                    title="View Github repository"
+                  >
+                    <FontAwesomeIcon icon={faGithub} size="lg" />
+                  </a>
+                  {node.description.includes("video") ? (
+                    <a
+                      href={tube.link}
+                      style={{ color: "inherit", marginLeft: "10px" }}
+                      target="_blank"
+                      title="Watch video on Youtube"
+                    >
+                      <FontAwesomeIcon icon={faYoutube} size="lg" />
+                    </a>
+                  ) : (
+                    <></>
+                  )}
+                </Row>
               </Card>
             )
           })}

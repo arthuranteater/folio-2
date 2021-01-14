@@ -28,7 +28,7 @@ const IndexPage = () => (
       <Carousel />
       <Projects />
       <About />
-      <p>
+      <p id="contact">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
         quam eleifend ipsum dignissim euismod. Sed imperdiet massa purus, ac
         rutrum tortor tincidunt vel. Vestibulum sed eros varius, faucibus velit

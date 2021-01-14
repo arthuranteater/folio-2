@@ -13,6 +13,7 @@ import {
   faStepBackward,
   faChevronRight,
   faChevronLeft,
+  faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons"
 
 const sites = [
@@ -37,11 +38,6 @@ const sites = [
     title: "What's the Weather In",
     url: "https://www.whatstheweatherin.com/",
   },
-  {
-    id: 187365,
-    title: "huntCodes",
-    url: "https://www.huntcodes.co/",
-  },
 ]
 
 const Title = styled.h2`
@@ -60,10 +56,54 @@ const IphoneX = styled.div`
   border-bottom-width: 60px;
   border-radius: 36px;
 `
-const PlayButtonWrapper = styled.div`
+const PlayButtonWrapper = styled.button`
   position: absolute;
   top: -40px;
   left: 10%;
+  display: inline-block;
+  border: none;
+  text-decoration: none;
+  background: black;
+  cursor: pointer;
+  text-align: center;
+  /* transition: background 250ms ease-in-out, transform 150ms ease; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+  &:focus {
+    color: #293e60;
+    background-color: white;
+    outline: 0;
+    border: 1px solid #293e60;
+  }
+`
+
+const ToggleButtonWrapper = styled.button`
+  display: inline-block;
+  border: none;
+  text-decoration: none;
+  background: black;
+  cursor: pointer;
+  text-align: center;
+  /* transition: background 250ms ease-in-out, transform 150ms ease; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  text-decoration: none;
+  background: white;
+  cursor: pointer;
+  text-align: center;
+  /* transition: background 250ms ease-in-out, transform 150ms ease; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+  &:focus {
+    color: #293e60;
+    background-color: white;
+    outline: 0;
+    border: 1px solid #293e60;
+  }
+  margin: 4px;
 `
 
 const Speaker = styled.div`
@@ -101,6 +141,14 @@ const ControlsContainer = styled.div`
   grid-gap: 10px; */
 `
 
+const Row = styled.div`
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+`
+
 const Screen = styled.div`
   width: 375px;
   height: 812px;
@@ -125,26 +173,29 @@ const StyledH = styled.h2`
   opacity: 0.9;
 `
 
-const SiteTitleButton = styled.button`
-  width: 250px;
+const ButtonLink = styled.a`
+  width: 350px;
   color: white;
   background-color: #293e60;
   font-family: Raleway, sans-serif;
-  /* margin-bottom: 2rem; */
+  text-decoration: none;
   border-radius: 10px;
-  /* box-shadow: 4px 8px #888888; */
-  margin-right: 1rem;
+  &:hover ${StyledH} {
+    opacity: 1;
+  }
   &:hover {
     cursor: pointer;
   }
-  &:hover ${StyledH} {
-    opacity: 1;
+  &:focus {
+    color: #293e60;
+    background-color: white;
+    outline: 0;
+    border: 1px solid #293e60;
   }
 `
 
 const StyledIcon = styled(FontAwesomeIcon)`
   color: #f04e23;
-  margin-right: 1rem;
   &:hover {
     cursor: pointer;
     color: #293e60;
@@ -154,6 +205,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
 export default () => {
   const [counter, setCounter] = useState(0)
   const [pause, setPause] = useState(false)
+  const [hover, setHover] = useState(false)
 
   useInterval(
     () => {
@@ -163,42 +215,59 @@ export default () => {
     pause
   )
 
+  const site = sites[counter]
+
+  const call = site.id === 222222 ? true : false
+
   return (
     <>
       <Title>Mobile-First Applications</Title>
       <ControlsContainer>
-        <StyledIcon
+        <ToggleButtonWrapper
           onClick={() => {
             setPause(true)
             counter === 0
               ? setCounter(sites.length - 1)
               : setCounter(counter - 1)
           }}
-          //   style={{ color: "#293e60" }}
-          icon={faChevronLeft}
-          size="5x"
-          title="Backward"
-        />
-        <a
-          title={`Go to ${sites[counter].url} in new tab`}
-          href={sites[counter].url}
-          target="_blank"
         >
-          <SiteTitleButton>
-            <StyledH>{sites[counter].title}</StyledH>
-          </SiteTitleButton>
-        </a>
-        <StyledIcon
+          <StyledIcon
+            //   style={{ color: "#293e60" }}
+            icon={faChevronLeft}
+            size="5x"
+            title="Backward"
+          />
+        </ToggleButtonWrapper>
+        <ButtonLink
+          title={call ? "Go to contact form" : `Go to ${site.url}`}
+          href={call ? "/#contact" : site.url}
+          target={call ? "" : "_blank"}
+          onMouseOver={() => setHover(true)}
+          onMouseOut={() => setHover(false)}
+        >
+          <Row>
+            <StyledH>{site.title}</StyledH>
+            {!call && hover ? (
+              <FontAwesomeIcon
+                style={{ marginLeft: "10px" }}
+                icon={faExternalLinkAlt}
+                size="lg"
+              />
+            ) : (
+              <></>
+            )}
+          </Row>
+        </ButtonLink>
+        <ToggleButtonWrapper
           onClick={() => {
             setPause(true)
             counter === sites.length - 1
               ? setCounter(0)
               : setCounter(counter + 1)
           }}
-          icon={faChevronRight}
-          size="5x"
-          title="Forward"
-        />
+        >
+          <StyledIcon icon={faChevronRight} size="5x" title="Forward" />
+        </ToggleButtonWrapper>
       </ControlsContainer>
       <IphoneX onClick={() => setPause(!pause)}>
         <PlayButtonWrapper>
@@ -211,7 +280,7 @@ export default () => {
         <Speaker></Speaker>
         <Screen>
           <iframe
-            src={sites[counter].url}
+            src={site.url}
             style={{
               width: "100%",
               border: "none",
@@ -219,7 +288,7 @@ export default () => {
               display: "relative",
             }}
           />
-          {sites[counter].url.includes("placeholder") ? (
+          {site.url.includes("placeholder") ? (
             <CustomTextWrapper>
               <CustomText>Your Mobile Site</CustomText>
             </CustomTextWrapper>
