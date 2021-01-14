@@ -91,7 +91,6 @@ export default () => {
       <ScrollBar />
       <Row>
         <Title>{`${"< huntCodes />"}`}</Title>
-        <div>test</div>
         <FontAwesomeIcon icon={faGithub} size="lg" />
         <div>{console.log("active", active)}</div>
         <Links>
