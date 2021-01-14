@@ -174,6 +174,11 @@ const StyledH = styled.h2`
 `
 
 const ButtonLink = styled.a`
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
   width: 350px;
   color: white;
   background-color: #293e60;

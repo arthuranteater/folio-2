@@ -63,20 +63,26 @@ const PContainer = styled.div`
 
 const StyledP = styled.p`
   padding: 10px;
+  /* text-indent: 20px; */
   line-height: 1.5;
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 `
-const StyledH = styled.h5`
+const StyledH = styled.h4`
   opacity: 0.9;
 `
-const ButtonLink = styled.a`
-  width: 200px;
+const LinkButtonRow = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
   color: white;
-  background: #293e60;
+  background-color: #293e60;
   font-family: Raleway, sans-serif;
   text-decoration: none;
-  border-radius: 20px;
   &:hover ${StyledH} {
     opacity: 1;
   }
@@ -92,12 +98,6 @@ const ButtonLink = styled.a`
 `
 const Row = styled.div`
   display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  padding: 2px;
-  background: #293e60;
-  border-radius: 10px;
 `
 
 export default () => {
@@ -116,31 +116,55 @@ export default () => {
               src="https://lh3.googleusercontent.com/pw/ACtC-3ekja2q5NzvtBONCzoHGoHS8KTF8wVe0KuZGmKsoCdnliRY5x4kkl3Ul4CwISWhp39EtTgWAiY_Mq8MiDmRavIK5JItTDUgPUxEoXE2JgajYkWibMqI_MtVy_OddcrLxysA7u0i7FRoPQFeXoODJGAW=d"
               alt="avatar"
             />
-          </AvatarContainer>
-          <PContainer>
-            <StyledP>
-              Hi, I'm Hunt. I founded huntCodes in 2018 to help businesses
-              create lightning fast, SEO optimized, mobile-first websites and
-              full stack applications. I've worked to upgrade existing sites
-              with new look and built entirely from scratch!
-            </StyledP>
-            <StyledP>
-              I work as an Assistant Instructor at 2U (formerly Trilogy
-              education) for their 6-month web development boot camp and
-              building websites for huntCodes! Check out some of my sites above
-              and visit my blog, arthuranteater!
-            </StyledP>
-          </PContainer>
-          <ButtonLink title="Download pdf" href={Resume} target="_blank">
-            <Row>
+            <LinkButtonRow title="Download pdf" href={Resume} target="_blank">
               <StyledH>Resume</StyledH>
               <FontAwesomeIcon
                 style={{ marginLeft: "10px" }}
                 icon={faFileDownload}
                 size="lg"
               />
-            </Row>
-          </ButtonLink>
+            </LinkButtonRow>
+          </AvatarContainer>
+          <PContainer>
+            <StyledP
+              style={
+                breakpoints.sm ? { textIndent: "0px" } : { textIndent: "20px" }
+              }
+            >
+              Hi, I'm Hunt. I founded huntCodes in 2018 to help businesses
+              create lightning fast, SEO optimized, mobile-first websites and
+              full stack applications. I've worked to upgrade existing sites
+              with new look and built entirely from scratch!
+            </StyledP>
+            <StyledP
+              style={
+                breakpoints.sm ? { textIndent: "0px" } : { textIndent: "20px" }
+              }
+            >
+              I have experience with Gatsby.js and React.js and server-less
+              solutions, but I'm open to working with any technology, projects
+              large and small! Visit my blog,{" "}
+              <a target="_blank" href="https://www.arthuranteater.com">
+                arthuranteater
+              </a>
+              !
+            </StyledP>
+            <LinkButtonRow
+              style={
+                breakpoints.sm ? { margin: "auto" } : { marginLeft: "auto" }
+              }
+              title="Download pdf"
+              href={Resume}
+              target="_blank"
+            >
+              <StyledH>Resume</StyledH>
+              <FontAwesomeIcon
+                style={{ marginLeft: "10px" }}
+                icon={faFileDownload}
+                size="lg"
+              />
+            </LinkButtonRow>
+          </PContainer>
         </ContentGrid>
       </AboutContainer>
     </>
