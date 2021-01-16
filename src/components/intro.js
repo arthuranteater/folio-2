@@ -7,7 +7,7 @@ import { useBreakpoint } from "gatsby-plugin-breakpoints"
 import { motion } from "framer-motion"
 import CodingDude from "../images/code_development_600.png"
 
-const str = "Welcome to huntCodes! Looking to build a site?"
+const str = "Welcome to huntCodes!"
 
 const container = {
   hidden: { opacity: 1, scale: 0 },

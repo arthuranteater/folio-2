@@ -141,9 +141,9 @@ export default () => {
                 breakpoints.sm ? { textIndent: "0px" } : { textIndent: "20px" }
               }
             >
-              I have experience with Gatsby.js and React.js and server-less
-              solutions, but I'm open to working with any technology, projects
-              large and small! Visit my blog,{" "}
+              I've been primarily building sites with Gatsby and server-less
+              solutions, but I'm open to any technology, mobile development,
+              games, IoT! Visit my blog,{" "}
               <a target="_blank" href="https://www.arthuranteater.com">
                 arthuranteater
               </a>
