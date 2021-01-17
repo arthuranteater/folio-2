@@ -75,13 +75,13 @@ const LinkButtonRow = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
   border-radius: 10px;
   width: 150px;
   height: 50px;
   color: white;
   background-color: #293e60;
   font-family: Raleway, sans-serif;
+  font-size: large;
   text-decoration: none;
   &:hover ${StyledH} {
     opacity: 1;

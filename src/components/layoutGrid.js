@@ -9,18 +9,21 @@ import Nav from "./navbar"
 const Grid = styled.div`
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 50px 1fr 40px;
+  grid-template-rows: 50px minmax(320px, 1fr) 40px;
   grid-gap: 10px;
 `
 
 const Main = styled.main`
-  margin: 0 auto;
+  /* margin: 0 auto; */
   max-width: 960px;
   padding: 0 1.0875rem 1.45rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
 `
 const Footer = styled.footer`
   display: flex;
@@ -34,7 +37,7 @@ const Footer = styled.footer`
 
 const defaultCSS = `
     body {
-        margin: 0;
+        margin: 0 auto;
     }`
 
 const Layout = ({ children }) => {

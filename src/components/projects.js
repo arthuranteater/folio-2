@@ -60,6 +60,7 @@ const CardUl = styled.ul`
 
 const Card = styled.div`
   padding: 1rem;
+  width: 200px;
   background: light grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -67,9 +68,11 @@ const Card = styled.div`
 `
 
 const CardFlex = styled.div`
-  max-width: 960;
   display: flex;
+  justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
 `
 
 const Row = styled.div`
@@ -79,6 +82,8 @@ const Row = styled.div`
   justify-content: center;
   font-family: "Raleway", sans-serif;
   padding: 2px;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
 `
 
 const tube = {
@@ -137,7 +142,7 @@ export default () => {
       <Divider id="github" />
       <Title>Pinned Github Repos</Title>
       <CardContainer>
-        <ContentGrid>
+        <CardFlex>
           {edges.map(repo => {
             const { node } = repo
             return (
@@ -186,7 +191,7 @@ export default () => {
               </Card>
             )
           })}
-        </ContentGrid>
+        </CardFlex>
       </CardContainer>
     </>
   )

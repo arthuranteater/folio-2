@@ -58,10 +58,13 @@ const styledH = styled(motion.h1)`
 `
 
 const ImageContainer = styled(motion.div)`
-  height: 400px;
+  max-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 0px;
+  min-width: 0px;
+  overflow: hidden;
 `
 
 export default () => {

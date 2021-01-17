@@ -6,11 +6,7 @@ import Image from "./image" //img can be used from for lazy loading
 import { useBreakpoint } from "gatsby-plugin-breakpoints"
 import Resume from "../files/2021_Hunt_Applegate_Resume.pdf"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faFileAlt,
-  faFilePdf,
-  faFileDownload,
-} from "@fortawesome/free-solid-svg-icons"
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import Recaptcha from "react-google-recaptcha"
 
 //recaptcha key check
@@ -53,7 +49,7 @@ const Divider = styled.div`
 
 const FormGrid = styled.form`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
   grid-gap: 20px;
   padding: 2rem;
 `
@@ -61,18 +57,17 @@ const FormGrid = styled.form`
 const StyledH = styled.h4`
   opacity: 0.9;
 `
-const LinkButtonRow = styled.a`
+const ButtonRow = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
   border-radius: 10px;
   width: 150px;
   height: 50px;
   color: white;
   background-color: #293e60;
   font-family: Raleway, sans-serif;
-  text-decoration: none;
+  font-size: large;
   &:hover ${StyledH} {
     opacity: 1;
   }
@@ -89,14 +84,26 @@ const LinkButtonRow = styled.a`
 const Row = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: ${({ small }) => (small ? "column" : "row")};
+  align-items: ${({ small }) => (small ? "column" : "end")};
+  justify-content: ${({ small }) => (small ? "center" : "space-evenly")};
 `
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+const TextArea = styled.textarea`
+  width: 600px;
+  height: 100px;
+  border: 2px solid #293e60;
+  borderradius: 10px;
+  marginbottom: 20px;
+  margintop: 4px;
+  fontsize: large;
+  fontfamily: Raleway, sans-serif;
+  color: #293e60;
 `
 
 export default () => {
@@ -140,11 +147,10 @@ export default () => {
       <Divider id="contact" />
       {/* {breakpoints.sm ? "" : setSize(false)} */}
       <Title>Contact Me</Title>
-      {/* {breakpoints.sm ? "" : setSize(false)} */}
+      <noscript>
+        <p>This form won’t work with Javascript disabled</p>
+      </noscript>
       <AboutContainer>
-        <noscript>
-          <p>This form won’t work with Javascript disabled</p>
-        </noscript>
         {success ? (
           <h2>Thank you for the message! You'll get a response ASAP!</h2>
         ) : (
@@ -155,40 +161,10 @@ export default () => {
             // data-netlify-recaptcha="true"
             onSubmit={e => handleSubmit(e)}
           >
-            {/* <ContentGrid> */}
-            <Row style={{ alignContent: "space-between" }}>
+            <Row small={breakpoints.sm}>
               <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="message" value={message} />
-              <label
-              // style={{
-              //   display: "inline-block",
-              //   width: "6em",
-              //   position: "relative",
-              //   top: "-3em",
-              // }}
-              >
-                Name
-                <input
-                  placeholder="John Doe"
-                  name="first"
-                  required
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid #293e60",
-                  }}
-                />
-              </label>
-              <label
-                style={
-                  {
-                    //   display: "inline-block",
-                    //   width: "6em",
-                    //   position: "relative",
-                    //   top: "-3em",
-                  }
-                }
-              >
-                Email
+              <Column>
                 <input
                   placeholder="email@email.com"
                   name="email"
@@ -197,16 +173,67 @@ export default () => {
                   style={{
                     border: "none",
                     borderBottom: "2px solid #293e60",
+                    fontFamily: "'Raleway', sans-serif",
+                    color: "#293e60",
+                    fontSize: "large",
+                    width: "250px",
                   }}
                 />
-              </label>
+                <label
+                  style={{
+                    marginTop: "4px",
+                    fontSize: "large",
+                    fontFamily: "'Raleway', sans-serif",
+                    color: "#293e60",
+                  }}
+                  for="email"
+                >
+                  Email
+                </label>
+              </Column>
+              <Column>
+                <input
+                  placeholder="John Doe"
+                  name="first"
+                  required
+                  style={{
+                    border: "none",
+                    borderBottom: "2px solid #293e60",
+                    fontFamily: "'Raleway', sans-serif",
+                    color: "#293e60",
+                    fontSize: "large",
+                    width: "250px",
+                  }}
+                />
+                <label
+                  style={{
+                    marginTop: "4px",
+                    fontSize: "large",
+                    fontFamily: "'Raleway', sans-serif",
+                    color: "#293e60",
+                  }}
+                  for="first"
+                >
+                  Name
+                </label>
+              </Column>
             </Row>
             <Column>
+              <label
+                style={{
+                  marginTop: "4px",
+                  fontSize: "large",
+                  fontFamily: "'Raleway', sans-serif",
+                  color: "#293e60",
+                }}
+                for="message"
+              >
+                Message
+              </label>
               <textarea
                 value={message}
                 onChange={e => setMessage(e.target.value)}
                 placeholder="type here"
-                // style={{ minWidth: "800px" }}
               />
               {/* <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} /> */}
               <div>
@@ -216,11 +243,15 @@ export default () => {
                   <></>
                 )}
               </div>
+              <ButtonRow type="submit">
+                <StyledH style={{ marginRight: "10px" }}>Submit</StyledH>
+                <FontAwesomeIcon
+                  //   style={{ margin: "10px" }}
+                  icon={faPaperPlane}
+                  size="lg"
+                />
+              </ButtonRow>
             </Column>
-            <Row>
-              <button type="submit">Submit</button>
-            </Row>
-            {/* </ContentGrid> */}
           </FormGrid>
         )}
       </AboutContainer>
