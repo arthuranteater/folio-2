@@ -8,22 +8,25 @@ import Nav from "./navbar"
 
 const Grid = styled.div`
   min-height: 100vh;
+  min-width: 100vw;
   display: grid;
-  grid-template-rows: 50px minmax(320px, 1fr) 40px;
+  grid-template-rows: 50px 1fr 40px;
   grid-gap: 10px;
 `
 
+const MainContainer = styled.div`
+  margin: auto;
+  width: 100%;
+`
+
 const Main = styled.main`
-  /* margin: 0 auto; */
+  margin: auto;
   max-width: 960px;
-  padding: 0 1.0875rem 1.45rem;
+  padding: 0 1.45rem 1.45rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
 `
 const Footer = styled.footer`
   display: flex;
@@ -55,7 +58,9 @@ const Layout = ({ children }) => {
       <style>{defaultCSS}</style>
       <Grid>
         <Nav />
-        <Main>{children}</Main>
+        <MainContainer>
+          <Main>{children}</Main>
+        </MainContainer>
         <Footer>© {new Date().getFullYear()}, huntCodes</Footer>
       </Grid>
     </>

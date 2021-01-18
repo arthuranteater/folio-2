@@ -48,6 +48,7 @@ const Divider = styled.div`
 `
 
 const FormGrid = styled.form`
+  margin-top: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;
   grid-gap: 20px;
@@ -93,16 +94,17 @@ const Column = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: ${props => (props.end ? "0px" : "40px")};
 `
 const TextArea = styled.textarea`
-  width: 600px;
-  height: 100px;
+  width: ${({ small }) => (small ? "300px" : "600px")};
+  height: ${({ small }) => (small ? "200px" : "100px")};
   border: 2px solid #293e60;
-  borderradius: 10px;
-  marginbottom: 20px;
-  margintop: 4px;
-  fontsize: large;
-  fontfamily: Raleway, sans-serif;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 4px;
+  font-size: large;
+  font-family: Raleway, sans-serif;
   color: #293e60;
 `
 
@@ -166,7 +168,7 @@ export default () => {
               <input type="hidden" name="message" value={message} />
               <Column>
                 <input
-                  placeholder="email@email.com"
+                  //   placeholder="email@email.com"
                   name="email"
                   type="email"
                   required
@@ -193,7 +195,7 @@ export default () => {
               </Column>
               <Column>
                 <input
-                  placeholder="John Doe"
+                  //   placeholder="John Doe"
                   name="first"
                   required
                   style={{
@@ -218,7 +220,7 @@ export default () => {
                 </label>
               </Column>
             </Row>
-            <Column>
+            <Column end>
               <label
                 style={{
                   marginTop: "4px",
@@ -230,10 +232,11 @@ export default () => {
               >
                 Message
               </label>
-              <textarea
+              <TextArea
                 value={message}
                 onChange={e => setMessage(e.target.value)}
-                placeholder="type here"
+                small={breakpoints.sm}
+                // placeholder="type here"
               />
               {/* <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} /> */}
               <div>
