@@ -6,11 +6,7 @@ import Header from "./header"
 import { useStaticQuery, graphql } from "gatsby"
 import { useBreakpoint } from "gatsby-plugin-breakpoints"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faBars,
-  faGithubSquare,
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons"
+import { faBars } from "@fortawesome/free-solid-svg-icons"
 import ScrollBar from "./scrollbar"
 import { useViewportScroll } from "framer-motion"
 
@@ -91,7 +87,6 @@ export default () => {
       <ScrollBar />
       <Row>
         <Title>{`${"< huntCodes />"}`}</Title>
-        <FontAwesomeIcon icon={faGithub} size="lg" />
         <div>{console.log("active", active)}</div>
         <Links>
           {breakpoints.sm ? (
