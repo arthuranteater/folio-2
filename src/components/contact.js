@@ -111,7 +111,7 @@ const TextArea = styled.textarea`
 export default () => {
   const [{ err, success }, setStatus] = useState({ err: "", success: false })
   const [message, setMessage] = useState("")
-  // const recaptchaRef = React.createRef()
+  const recaptchaRef = React.createRef()
   const breakpoints = useBreakpoint()
 
   const handleSubmit = e => {
@@ -129,7 +129,7 @@ export default () => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": "contact",
-        // "g-recaptcha-response": recaptchaValue,
+        "g-recaptcha-response": recaptchaRef.current.getValue(),
         ...formPkg,
       }),
     })
