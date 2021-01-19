@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import Image from "./image" //img can be used from for lazy loading
 import { useBreakpoint } from "gatsby-plugin-breakpoints"
@@ -122,7 +122,8 @@ font-family: Raleway, sans-serif;
 export default () => {
   const [{ err, success }, setStatus] = useState({ err: "", success: false })
   const [message, setMessage] = useState("")
-  const recaptchaRef = React.createRef()
+  // const recaptchaRef = React.createRef()
+  const recaptchaRef = useRef() 
   const breakpoints = useBreakpoint()
 
   const handleSubmit = e => {
@@ -135,12 +136,15 @@ export default () => {
     }
     // const recaptchaValue = recaptchaRef.current.getValue()
     console.log(formPkg)
+    const value = recaptchaRef.current.getValue()
+    console.log('value', value)
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": "contact",
-        "g-recaptcha-response": recaptchaRef.current.getValue(),
+        'g-recaptcha': RECAPTCHA_KEY,
+        "g-recaptcha-response": value,
         ...formPkg,
       }),
     })
