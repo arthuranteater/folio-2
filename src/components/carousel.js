@@ -288,6 +288,7 @@ export default () => {
               height: "100%",
               display: "relative",
             }}
+            title={site.url}
           />
           {site.url.includes("placeholder") ? (
             <CustomTextWrapper>
