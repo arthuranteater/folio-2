@@ -93,7 +93,7 @@ export default () => {
             <FontAwesomeIcon icon={faBars} />
           ) : (
             sections.map(sec => (
-              <StyledLink active={sec === active} href={`/#${sec}`}>
+              <StyledLink key={sec} active={sec === active} href={`/#${sec}`}>
                 {sec.toUpperCase()}
               </StyledLink>
             ))

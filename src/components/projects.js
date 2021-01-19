@@ -14,15 +14,6 @@ import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 
 //above the imported img can be used from Gatsby image component for lazy loading
 
-const CardContainer = styled.div`
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 4px;
-  /* display: flex;
-  justify-content: center;
-  justify-items: center; */
-`
-
 const CardTitle = styled.h4`
   color: #293e60;
   text-align: center;
@@ -139,61 +130,61 @@ export default () => {
     <>
       <Divider id="github" />
       <Title>Pinned Github Repos</Title>
-      <CardContainer>
-        <CardFlex>
-          {edges.map(repo => {
-            const { node } = repo
-            return (
-              <Card key={node.id}>
-                {console.log("node", node.id, "name", node.name)}
-                <CardTitle>{node.name}</CardTitle>
-                <CardUl>
-                  <CardLi>{node.description}</CardLi>
-                  <CardLi>
-                    Contributors:{" "}
-                    {node.collaborators.nodes.map(user => (
-                      <span>{`${user.name}, ${user.login}`}</span>
-                    ))}
-                  </CardLi>
-                </CardUl>
-                <Row>
+      <CardFlex>
+        {edges.map(repo => {
+          const { node } = repo
+          return (
+            <Card key={node.id}>
+              {console.log("node", node.id, "name", node.name)}
+              <CardTitle>{node.name}</CardTitle>
+              <CardUl>
+                <CardLi>{node.description}</CardLi>
+                <CardLi>
+                  Contributors:{" "}
+                  {node.collaborators.nodes.map(user => (
+                    <span
+                      key={user.login}
+                    >{`${user.name}, ${user.login}`}</span>
+                  ))}
+                </CardLi>
+              </CardUl>
+              <Row>
+                <a
+                  href={node.homepageUrl}
+                  style={{ color: "#293e60" }}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="View website"
+                >
+                  <FontAwesomeIcon icon={faExternalLinkAlt} size="lg" />
+                </a>
+                <a
+                  href={node.url}
+                  style={{ color: "inherit", marginLeft: "10px" }}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="View Github repository"
+                >
+                  <FontAwesomeIcon icon={faGithub} size="lg" />
+                </a>
+                {node.description.includes("video") ? (
                   <a
-                    href={node.homepageUrl}
-                    style={{ color: "#293e60" }}
+                    href={tube.link}
+                    style={{ color: "#FF0000", marginLeft: "10px" }}
                     target="_blank"
                     rel="noreferrer"
-                    title="View website"
+                    title="Watch video on Youtube"
                   >
-                    <FontAwesomeIcon icon={faExternalLinkAlt} size="lg" />
+                    <FontAwesomeIcon icon={faYoutube} size="lg" />
                   </a>
-                  <a
-                    href={node.url}
-                    style={{ color: "inherit", marginLeft: "10px" }}
-                    target="_blank"
-                    rel="noreferrer"
-                    title="View Github repository"
-                  >
-                    <FontAwesomeIcon icon={faGithub} size="lg" />
-                  </a>
-                  {node.description.includes("video") ? (
-                    <a
-                      href={tube.link}
-                      style={{ color: "#FF0000", marginLeft: "10px" }}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="Watch video on Youtube"
-                    >
-                      <FontAwesomeIcon icon={faYoutube} size="lg" />
-                    </a>
-                  ) : (
-                    <></>
-                  )}
-                </Row>
-              </Card>
-            )
-          })}
-        </CardFlex>
-      </CardContainer>
+                ) : (
+                  <></>
+                )}
+              </Row>
+            </Card>
+          )
+        })}
+      </CardFlex>
     </>
   )
 }

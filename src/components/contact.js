@@ -195,7 +195,7 @@ export default () => {
                     fontFamily: "'Raleway', sans-serif",
                     color: "#293e60",
                   }}
-                  for="email"
+                  htmlFor="email"
                 >
                   Email
                 </label>
@@ -221,7 +221,7 @@ export default () => {
                     fontFamily: "'Raleway', sans-serif",
                     color: "#293e60",
                   }}
-                  for="first"
+                  htmlFor="first"
                 >
                   Name
                 </label>
@@ -235,7 +235,7 @@ export default () => {
                   fontFamily: "'Raleway', sans-serif",
                   color: "#293e60",
                 }}
-                for="message"
+                htmlFor="message"
               >
                 Message
               </label>
