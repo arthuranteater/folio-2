@@ -242,6 +242,7 @@ export default () => {
           title={call ? "Go to contact form" : `Go to ${site.url}`}
           href={call ? "/#contact" : site.url}
           target={call ? "" : "_blank"}
+          rel="noreferrer"
           onMouseOver={() => setHover(true)}
           onMouseOut={() => setHover(false)}
         >

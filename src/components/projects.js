@@ -161,6 +161,7 @@ export default () => {
                     href={node.homepageUrl}
                     style={{ color: "#293e60" }}
                     target="_blank"
+                    rel="noreferrer"
                     title="View website"
                   >
                     <FontAwesomeIcon icon={faExternalLinkAlt} size="lg" />
@@ -169,6 +170,7 @@ export default () => {
                     href={node.url}
                     style={{ color: "inherit", marginLeft: "10px" }}
                     target="_blank"
+                    rel="noreferrer"
                     title="View Github repository"
                   >
                     <FontAwesomeIcon icon={faGithub} size="lg" />
@@ -178,6 +180,7 @@ export default () => {
                       href={tube.link}
                       style={{ color: "#FF0000", marginLeft: "10px" }}
                       target="_blank"
+                      rel="noreferrer"
                       title="Watch video on Youtube"
                     >
                       <FontAwesomeIcon icon={faYoutube} size="lg" />

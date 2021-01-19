@@ -59,6 +59,7 @@ const StyledH = styled.h4`
   opacity: 0.9;
 `
 const ButtonRow = styled.button`
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,6 +109,11 @@ const TextArea = styled.textarea`
   color: #293e60;
 `
 
+const StyledResponse = styled.h3`
+  color: ${({ success }) => (success ? "#293e60" : "red")};
+  margin: auto;
+`
+
 export default () => {
   const [{ err, success }, setStatus] = useState({ err: "", success: false })
   const [message, setMessage] = useState("")
@@ -134,7 +140,6 @@ export default () => {
       }),
     })
       .then(res => {
-        console.log("res", res)
         setStatus({ err: false, success: true })
       })
       .catch(error => setStatus({ err: error, success: false }))
@@ -154,7 +159,9 @@ export default () => {
       </noscript>
       <AboutContainer>
         {success ? (
-          <h2>Thank you for the message! You'll get a response ASAP!</h2>
+          <StyledResponse success={success}>
+            Thank you for reaching out! I'll get back to you ASAP!
+          </StyledResponse>
         ) : (
           <FormGrid
             name="contact"
@@ -241,7 +248,9 @@ export default () => {
               <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
               <div>
                 {err !== "" ? (
-                  <h4>{`Error: ${err} We're sorry! Please try again later!`}</h4>
+                  <StyledResponse
+                    success={success}
+                  >{`Error: ${err} We're sorry! Please try again later!`}</StyledResponse>
                 ) : (
                   <></>
                 )}

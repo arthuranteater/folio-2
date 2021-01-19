@@ -170,6 +170,7 @@ export default () => {
                     profile.site === "Blog" ? {} : { color: `${profile.color}` }
                   }
                   target="_blank"
+                  rel="noreferrer"
                   title={`Visit ${profile.site}`}
                 >
                   {profile.site === "Blog" ? (
@@ -200,7 +201,11 @@ export default () => {
               I've been primarily building sites with Gatsby and server-less
               solutions, but I'm open to any technology, mobile development,
               games, IoT! Visit my blog,{" "}
-              <a target="_blank" href="https://www.arthuranteater.com">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.arthuranteater.com"
+              >
                 arthuranteater
               </a>
               !
@@ -212,6 +217,7 @@ export default () => {
               title="Download pdf"
               href={Resume}
               target="_blank"
+              rel="noreferrer"
             >
               <StyledH>Resume</StyledH>
               <FontAwesomeIcon
