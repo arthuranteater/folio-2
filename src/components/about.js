@@ -11,6 +11,36 @@ import {
   faFilePdf,
   faFileDownload,
 } from "@fortawesome/free-solid-svg-icons"
+import {
+  faGithub,
+  faYoutube,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons"
+
+import Anteater from "../images/anteater_sm_80.png"
+
+const profiles = [
+  {
+    site: "Github",
+    icon: faGithub,
+    color: "black",
+    address: "https://github.com/arthuranteater",
+  },
+  {
+    site: "Youtube",
+    icon: faYoutube,
+    color: "#FF0000",
+    address:
+      "https://www.youtube.com/channel/UCAsABKqBTJZpv6v8bGS8o6A/featured",
+  },
+  {
+    site: "Twitter",
+    icon: faTwitter,
+    color: "#1DA1F2",
+    address: "https://twitter.com/arthuranteater",
+  },
+  { site: "Blog", address: "https://arthuranteater.com/" },
+]
 
 const AboutContainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -48,6 +78,10 @@ const AvatarContainer = styled.div`
   max-width: 200px;
   height: auto;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   /* grid-area: img; */
 `
 
@@ -55,6 +89,7 @@ const CircleAvatar = styled.img`
   border-radius: 50%;
   border: 2px solid #293e60;
   width: 100%;
+  margin-bottom: 20px;
 `
 
 const PContainer = styled.div`
@@ -96,8 +131,16 @@ const LinkButtonRow = styled.a`
     border: 1px solid #293e60;
   }
 `
-const Row = styled.div`
+
+const IconsRow = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+`
+
+const StyledIconContainer = styled.a`
+  margin-left: ${({ blog, small }) => (blog ? "15px" : "30px")};
 `
 
 export default () => {
@@ -116,14 +159,27 @@ export default () => {
               src="https://lh3.googleusercontent.com/pw/ACtC-3ekja2q5NzvtBONCzoHGoHS8KTF8wVe0KuZGmKsoCdnliRY5x4kkl3Ul4CwISWhp39EtTgWAiY_Mq8MiDmRavIK5JItTDUgPUxEoXE2JgajYkWibMqI_MtVy_OddcrLxysA7u0i7FRoPQFeXoODJGAW=d"
               alt="avatar"
             />
-            <LinkButtonRow title="Download pdf" href={Resume} target="_blank">
-              <StyledH>Resume</StyledH>
-              <FontAwesomeIcon
-                style={{ marginLeft: "10px" }}
-                icon={faFileDownload}
-                size="lg"
-              />
-            </LinkButtonRow>
+            <IconsRow>
+              {profiles.map(profile => (
+                <StyledIconContainer
+                  key={profile.site}
+                  small={breakpoints.sm}
+                  blog={profile.site === "Blog" ? true : false}
+                  href={profile.address}
+                  style={
+                    profile.site === "Blog" ? {} : { color: `${profile.color}` }
+                  }
+                  target="_blank"
+                  title={`Visit ${profile.site}`}
+                >
+                  {profile.site === "Blog" ? (
+                    <img src={Anteater} alt="blog logo" />
+                  ) : (
+                    <FontAwesomeIcon icon={profile.icon} size="lg" />
+                  )}
+                </StyledIconContainer>
+              ))}
+            </IconsRow>
           </AvatarContainer>
           <PContainer>
             <StyledP

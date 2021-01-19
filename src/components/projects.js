@@ -79,11 +79,9 @@ const Row = styled.div`
   display: flex;
   align-content: center;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   font-family: "Raleway", sans-serif;
   padding: 2px;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
 `
 
 const tube = {
@@ -161,7 +159,7 @@ export default () => {
                 <Row>
                   <a
                     href={node.homepageUrl}
-                    style={{ color: "inherit" }}
+                    style={{ color: "#293e60" }}
                     target="_blank"
                     title="View website"
                   >
@@ -178,7 +176,7 @@ export default () => {
                   {node.description.includes("video") ? (
                     <a
                       href={tube.link}
-                      style={{ color: "inherit", marginLeft: "10px" }}
+                      style={{ color: "#FF0000", marginLeft: "10px" }}
                       target="_blank"
                       title="Watch video on Youtube"
                     >
