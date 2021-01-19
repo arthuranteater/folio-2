@@ -34,6 +34,10 @@ const AboutContainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
 const Title = styled.h2`
@@ -110,8 +114,9 @@ const TextArea = styled.textarea`
 `
 
 const StyledResponse = styled.h3`
+font-family: Raleway, sans-serif;
   color: ${({ success }) => (success ? "#293e60" : "red")};
-  margin: auto;
+  margin: 10px;
 `
 
 export default () => {
@@ -140,6 +145,7 @@ export default () => {
       }),
     })
       .then(res => {
+        console.log('res', res)
         setStatus({ err: false, success: true })
       })
       .catch(error => setStatus({ err: error, success: false }))
@@ -160,7 +166,7 @@ export default () => {
       <AboutContainer>
         {success ? (
           <StyledResponse success={success}>
-            Thank you for reaching out! I'll get back to you ASAP!
+            Thank you! You'll receive a response via the email provided ASAP!
           </StyledResponse>
         ) : (
           <FormGrid
