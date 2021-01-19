@@ -160,7 +160,7 @@ export default () => {
             name="contact"
             method="post"
             data-netlify="true"
-            // data-netlify-recaptcha="true"
+            data-netlify-recaptcha="true"
             onSubmit={e => handleSubmit(e)}
           >
             <Row small={breakpoints.sm}>
@@ -238,7 +238,7 @@ export default () => {
                 small={breakpoints.sm}
                 // placeholder="type here"
               />
-              {/* <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} /> */}
+              <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
               <div>
                 {err !== "" ? (
                   <h4>{`Error: ${err} We're sorry! Please try again later!`}</h4>
