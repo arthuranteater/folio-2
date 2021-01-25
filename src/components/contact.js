@@ -160,7 +160,7 @@ export default () => {
         if (res.status)
         setStatus({ err: "", success: true })
       })
-      .catch(error => setStatus({ err: error, success: false }))
+      .catch(error => setStatus({ err: `Error: ${error} Please try again later!`, success: false }))
     }
     e.preventDefault()
   }
@@ -269,7 +269,7 @@ export default () => {
                 {err !== "" ? (
                   <StyledResponse
                     success={success}
-                  >{`Error: ${err} We're sorry! Please try again later!`}</StyledResponse>
+                  >{err}</StyledResponse>
                 ) : (
                   <></>
                 )}
