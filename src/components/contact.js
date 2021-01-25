@@ -138,7 +138,14 @@ export default () => {
     console.log(formPkg)
     const value = recaptchaRef.current.getValue()
     console.log('value', value)
-    fetch("/", {
+    if (value === null) {
+      setStatus({ err: "Complete the recaptcha field!", success: false })
+    } else if (email === '') {
+       setStatus({ err: "Complete the email field!", success: false })
+    } else if (message === '') {
+      setStatus({ err: "Complete the message field!", success: false })
+    } else {
+      fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
@@ -150,10 +157,11 @@ export default () => {
     })
       .then(res => {
         console.log('res', res)
-        setStatus({ err: false, success: true })
+        if (res.status)
+        setStatus({ err: "", success: true })
       })
       .catch(error => setStatus({ err: error, success: false }))
-
+    }
     e.preventDefault()
   }
 
@@ -164,9 +172,6 @@ export default () => {
       <Divider id="contact" />
       {/* {breakpoints.sm ? "" : setSize(false)} */}
       <Title>Contact Me</Title>
-      <noscript>
-        <p>This form won’t work with Javascript disabled</p>
-      </noscript>
       <AboutContainer>
         {success ? (
           <StyledResponse success={success}>
@@ -180,6 +185,9 @@ export default () => {
             data-netlify-recaptcha="true"
             onSubmit={e => handleSubmit(e)}
           >
+                <noscript>
+        <p>This form won’t work with Javascript disabled</p>
+      </noscript>
             <Row small={breakpoints.sm}>
               <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="message" value={message} />
@@ -254,6 +262,7 @@ export default () => {
                 onChange={e => setMessage(e.target.value)}
                 small={breakpoints.sm}
                 // placeholder="type here"
+                required
               />
               <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
               <div>
