@@ -113,6 +113,21 @@ const TextArea = styled.textarea`
   color: #293e60;
 `
 
+const Input = styled.input`
+  border: none;
+  borderbottom: 2px solid #293e60;
+  fontfamily: Raleway, sans-serif;
+  color: #293e60;
+  fontsize: large;
+  width: 250px;
+`
+const Label = styled.label`
+  margintop: 4px;
+  fontsize: large;
+  fontfamily: Raleway, sans-serif;
+  color: #293e60;
+`
+
 const StyledResponse = styled.h3`
   font-family: Raleway, sans-serif;
   color: ${({ success }) => (success ? "#293e60" : "red")};
@@ -122,7 +137,6 @@ const StyledResponse = styled.h3`
 export default () => {
   const [{ err, success }, setStatus] = useState({ err: "", success: false })
   const [message, setMessage] = useState("")
-  // const recaptchaRef = React.createRef()
   const recaptchaRef = useRef()
   const breakpoints = useBreakpoint()
 
@@ -134,13 +148,11 @@ export default () => {
       email: email.value,
       message: message.value,
     }
-    // const recaptchaValue = recaptchaRef.current.getValue()
-    console.log(formPkg)
     const value = recaptchaRef.current.getValue()
-    console.log("value", value)
     if (!value) {
       setStatus({ err: "Complete the recaptcha field!", success: false })
     } else {
+      setStatus({ err: "", success: false })
       fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -153,7 +165,12 @@ export default () => {
       })
         .then(res => {
           console.log("res", res)
-          if (res.status) setStatus({ err: "", success: true })
+          res.status === 200
+            ? setStatus({ err: "", success: true })
+            : setStatus({
+                err: `Error: ${res.status} status code`,
+                success: true,
+              })
         })
         .catch(error =>
           setStatus({
@@ -165,12 +182,9 @@ export default () => {
     e.preventDefault()
   }
 
-  console.log("err:", err, "success:", success)
-
   return (
     <>
       <Divider id="contact" />
-      {/* {breakpoints.sm ? "" : setSize(false)} */}
       <Title>Contact Me</Title>
       <AboutContainer>
         {success ? (
@@ -192,76 +206,20 @@ export default () => {
               <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="message" value={message} />
               <Column>
-                <input
-                  //   placeholder="email@email.com"
-                  name="email"
-                  type="email"
-                  required
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid #293e60",
-                    fontFamily: "'Raleway', sans-serif",
-                    color: "#293e60",
-                    fontSize: "large",
-                    width: "250px",
-                  }}
-                />
-                <label
-                  style={{
-                    marginTop: "4px",
-                    fontSize: "large",
-                    fontFamily: "'Raleway', sans-serif",
-                    color: "#293e60",
-                  }}
-                  htmlFor="email"
-                >
-                  Email
-                </label>
+                <Input name="email" type="email" required />
+                <Label htmlFor="email">Email</Label>
               </Column>
               <Column>
-                <input
-                  //   placeholder="John Doe"
-                  name="first"
-                  required
-                  style={{
-                    border: "none",
-                    borderBottom: "2px solid #293e60",
-                    fontFamily: "'Raleway', sans-serif",
-                    color: "#293e60",
-                    fontSize: "large",
-                    width: "250px",
-                  }}
-                />
-                <label
-                  style={{
-                    marginTop: "4px",
-                    fontSize: "large",
-                    fontFamily: "'Raleway', sans-serif",
-                    color: "#293e60",
-                  }}
-                  htmlFor="first"
-                >
-                  Name
-                </label>
+                <Input name="first" required />
+                <Label htmlFor="first">Name</Label>
               </Column>
             </Row>
             <Column end>
-              <label
-                style={{
-                  marginTop: "4px",
-                  fontSize: "large",
-                  fontFamily: "'Raleway', sans-serif",
-                  color: "#293e60",
-                }}
-                htmlFor="message"
-              >
-                Message
-              </label>
+              <Label htmlFor="message">Message</Label>
               <TextArea
                 value={message}
                 onChange={e => setMessage(e.target.value)}
                 small={breakpoints.sm}
-                // placeholder="type here"
                 required
               />
               <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
@@ -270,11 +228,7 @@ export default () => {
               </StyledResponse>
               <ButtonRow type="submit">
                 <StyledH style={{ marginRight: "10px" }}>Submit</StyledH>
-                <FontAwesomeIcon
-                  //   style={{ margin: "10px" }}
-                  icon={faPaperPlane}
-                  size="lg"
-                />
+                <FontAwesomeIcon icon={faPaperPlane} size="lg" />
               </ButtonRow>
             </Column>
           </FormGrid>
