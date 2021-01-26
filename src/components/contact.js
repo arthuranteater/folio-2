@@ -140,10 +140,6 @@ export default () => {
     console.log("value", value)
     if (!value) {
       setStatus({ err: "Complete the recaptcha field!", success: false })
-    } else if (!email) {
-      setStatus({ err: "Complete the email field!", success: false })
-    } else if (!message) {
-      setStatus({ err: "Complete the message field!", success: false })
     } else {
       fetch("/", {
         method: "POST",
