@@ -115,16 +115,16 @@ const TextArea = styled.textarea`
 
 const Input = styled.input`
   border: none;
-  borderbottom: 2px solid #293e60;
-  fontfamily: Raleway, sans-serif;
+  border-bottom: 2px solid #293e60;
+  font-family: Raleway, sans-serif;
   color: #293e60;
-  fontsize: large;
+  font-size: large;
   width: 250px;
 `
 const Label = styled.label`
-  margintop: 4px;
-  fontsize: large;
-  fontfamily: Raleway, sans-serif;
+  margin-top: 4px;
+  font-size: large;
+  font-family: Raleway, sans-serif;
   color: #293e60;
 `
 
