@@ -114,7 +114,7 @@ const TextArea = styled.textarea`
 `
 
 const StyledResponse = styled.h3`
-font-family: Raleway, sans-serif;
+  font-family: Raleway, sans-serif;
   color: ${({ success }) => (success ? "#293e60" : "red")};
   margin: 10px;
 `
@@ -123,7 +123,7 @@ export default () => {
   const [{ err, success }, setStatus] = useState({ err: "", success: false })
   const [message, setMessage] = useState("")
   // const recaptchaRef = React.createRef()
-  const recaptchaRef = useRef() 
+  const recaptchaRef = useRef()
   const breakpoints = useBreakpoint()
 
   const handleSubmit = e => {
@@ -137,30 +137,34 @@ export default () => {
     // const recaptchaValue = recaptchaRef.current.getValue()
     console.log(formPkg)
     const value = recaptchaRef.current.getValue()
-    console.log('value', value)
+    console.log("value", value)
     if (!value) {
       setStatus({ err: "Complete the recaptcha field!", success: false })
     } else if (!email) {
-       setStatus({ err: "Complete the email field!", success: false })
+      setStatus({ err: "Complete the email field!", success: false })
     } else if (!message) {
       setStatus({ err: "Complete the message field!", success: false })
     } else {
       fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": "contact",
-        'g-recaptcha': RECAPTCHA_KEY,
-        "g-recaptcha-response": value,
-        ...formPkg,
-      }),
-    })
-      .then(res => {
-        console.log('res', res)
-        if (res.status)
-        setStatus({ err: "", success: true })
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          "g-recaptcha": RECAPTCHA_KEY,
+          "g-recaptcha-response": value,
+          ...formPkg,
+        }),
       })
-      .catch(error => setStatus({ err: `Error: ${error} Please try again later!`, success: false }))
+        .then(res => {
+          console.log("res", res)
+          if (res.status) setStatus({ err: "", success: true })
+        })
+        .catch(error =>
+          setStatus({
+            err: `Error: ${error} Please try again later!`,
+            success: false,
+          })
+        )
     }
     e.preventDefault()
   }
@@ -185,9 +189,9 @@ export default () => {
             data-netlify-recaptcha="true"
             onSubmit={e => handleSubmit(e)}
           >
-                <noscript>
-        <p>This form won’t work with Javascript disabled</p>
-      </noscript>
+            <noscript>
+              <p>This form won’t work with Javascript disabled</p>
+            </noscript>
             <Row small={breakpoints.sm}>
               <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="message" value={message} />
@@ -265,15 +269,9 @@ export default () => {
                 required
               />
               <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
-              <div>
-                {err !== "" ? (
-                  <StyledResponse
-                    success={success}
-                  >{err}</StyledResponse>
-                ) : (
-                  <></>
-                )}
-              </div>
+              <StyledResponse success={success}>
+                {err ? err : ""}
+              </StyledResponse>
               <ButtonRow type="submit">
                 <StyledH style={{ marginRight: "10px" }}>Submit</StyledH>
                 <FontAwesomeIcon
