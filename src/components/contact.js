@@ -8,6 +8,7 @@ import Resume from "../files/2021_Hunt_Applegate_Resume.pdf"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import Recaptcha from "react-google-recaptcha"
+import { motion } from "framer-motion"
 
 //recaptcha key check
 
@@ -134,6 +135,99 @@ const StyledResponse = styled.h3`
   margin: 10px;
 `
 
+const Blinker = styled(motion.div)`
+  background-color: blue;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: 1px solid back;
+  display: inline-block;
+`
+
+const containerStyle = {
+  position: "relative",
+  width: "3rem",
+  height: "3rem",
+  boxSizing: "border-box",
+}
+
+const circleStyle = {
+  display: "block",
+  width: ".7rem",
+  height: ".7rem",
+  // border: "0.5rem solid #e9e9e9",
+  // borderTop: "0.5rem solid #3498db",
+  borderRadius: "50%",
+  position: "absolute",
+  // boxSizing: "border-box",
+  backgroundColor: "#f04e23",
+  top: 1,
+  left: 1,
+}
+
+const circleStyle2 = {
+  display: "block",
+  width: ".7rem",
+  height: ".7rem",
+  // border: "0.5rem solid #e9e9e9",
+  // borderTop: "0.5rem solid #3498db",
+  borderRadius: "50%",
+  position: "absolute",
+  // boxSizing: "border-box",
+  backgroundColor: "#f04e23",
+  bottom: 1,
+  right: 1,
+}
+
+const circleStyle3 = {
+  display: "block",
+  width: ".7rem",
+  height: ".7rem",
+  // border: "0.5rem solid #e9e9e9",
+  // borderTop: "0.5rem solid #3498db",
+  borderRadius: "50%",
+  position: "absolute",
+  // boxSizing: "border-box",
+  backgroundColor: "#f04e23",
+  bottom: 1,
+  left: 1,
+}
+
+const circleStyle4 = {
+  display: "block",
+  width: ".7rem",
+  height: ".7rem",
+  // border: "0.5rem solid #e9e9e9",
+  // borderTop: "0.5rem solid #3498db",
+  borderRadius: "50%",
+  position: "absolute",
+  // boxSizing: "border-box",
+  backgroundColor: "#f04e23",
+  top: 1,
+  right: 1,
+}
+
+const circleStyle5 = {
+  display: "block",
+  width: "1rem",
+  height: "1rem",
+  // border: "0.5rem solid #e9e9e9",
+  // borderTop: "0.5rem solid #3498db",
+  borderRadius: "50%",
+  position: "absolute",
+  // boxSizing: "border-box",
+  backgroundColor: "#293e60",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+}
+
+const spinTransition = {
+  loop: Infinity,
+  ease: "linear",
+  duration: [5, 5, 2, 0.5],
+}
+
 export default () => {
   const [{ err, success }, setStatus] = useState({ err: "", success: false })
   const [message, setMessage] = useState("")
@@ -233,6 +327,46 @@ export default () => {
             </Column>
           </FormGrid>
         )}
+        {/* <motion.div
+          animate={{
+            rotate: 90,
+          }}
+          transition={{
+            duration: 0.5,
+            ease: "linear",
+            // times: [1, 1, 1],
+            loop: Infinity,
+            // repeatDelay: 1,
+          }}
+          // transition={{
+          //   ease: "linear",
+          //   loop: Infinity,
+          //   duration: 1,
+          //   // repeatDelay: 1,
+          // }}
+          // transition={spinTransition}
+          style={containerStyle}
+        >
+          <motion.span style={circleStyle} />
+          <motion.span style={circleStyle2} />
+          <motion.span style={circleStyle3} />
+          <motion.span style={circleStyle4} />
+          <motion.span style={circleStyle5} />
+        </motion.div> */}
+        {/* <Blinker
+          animate={{ scale: [1, 2, 3, 2, 1] }}
+          transition={{ loop: "Infinity", duration: ".3", ease: "linear" }}
+        >
+          test
+        </Blinker> */}
+        {/* <motion.div
+          style={{ backgroundColor: "blue" }}
+          animate={{
+            scale: [1, 2, 2, 1, 1],
+            rotate: [0, 0, 270, 270, 0],
+            borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+          }}
+        /> */}
       </AboutContainer>
     </>
   )
