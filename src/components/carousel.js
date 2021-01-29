@@ -15,6 +15,7 @@ import {
   faChevronLeft,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons"
+import { SectionColumn } from "../utils/library"
 
 const sites = [
   {
@@ -222,6 +223,7 @@ export default () => {
   return (
     <>
       <Title>Mobile-First Applications</Title>
+      {/* <SectionColumn> */}
       <ControlsContainer>
         <ToggleButtonWrapper
           onClick={() => {
@@ -300,6 +302,7 @@ export default () => {
         </Screen>
         <Microphone></Microphone>
       </IphoneX>
+      {/* </SectionColumn> */}
     </>
   )
 }

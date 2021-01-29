@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 
 import Anteater from "../images/anteater_sm_80.png"
+import { SectionColumn, Title, TwoColGrid } from "../utils/library"
 
 const profiles = [
   {
@@ -48,31 +49,9 @@ const AboutContainer = styled.div`
   border-radius: 4px;
 `
 
-const Title = styled.h2`
-  color: #293e60;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  margin-bottom: 1rem;
-`
-
 const Divider = styled.div`
   margin-bottom: 100px;
 `
-
-const ContentGrid = styled.div`
-  display: grid;
-  grid-template-columns: ${props => (props.small ? `1fr` : `auto 1fr`)};
-  justify-items: ${props => (props.small ? `center` : `start`)};
-  grid-gap: 20px;
-  padding: 2rem;
-`
-
-// const ContentGridSm = styled.div`
-//   display: grid;
-//   grid-template-rows: auto auto;
-//   grid-gap: 20px;
-//   padding: 2rem;
-// `
 
 const AvatarContainer = styled.div`
   max-width: 200px;
@@ -144,16 +123,13 @@ const StyledIconContainer = styled.a`
 `
 
 export default () => {
-  //   const [sm, setSize] = useState(true)
-  const breakpoints = useBreakpoint()
+  const { sm } = useBreakpoint()
   return (
     <>
       <Divider id="about" />
-      {/* {breakpoints.sm ? "" : setSize(false)} */}
       <Title>A Web Developer</Title>
-      {/* {breakpoints.sm ? "" : setSize(false)} */}
-      <AboutContainer>
-        <ContentGrid small={breakpoints.sm ? true : false}>
+      <SectionColumn>
+        <TwoColGrid sm={sm}>
           <AvatarContainer>
             <CircleAvatar
               src="https://lh3.googleusercontent.com/pw/ACtC-3ekja2q5NzvtBONCzoHGoHS8KTF8wVe0KuZGmKsoCdnliRY5x4kkl3Ul4CwISWhp39EtTgWAiY_Mq8MiDmRavIK5JItTDUgPUxEoXE2JgajYkWibMqI_MtVy_OddcrLxysA7u0i7FRoPQFeXoODJGAW=d"
@@ -163,7 +139,7 @@ export default () => {
               {profiles.map(profile => (
                 <StyledIconContainer
                   key={profile.site}
-                  small={breakpoints.sm}
+                  small={sm}
                   blog={profile.site === "Blog" ? true : false}
                   href={profile.address}
                   style={
@@ -184,23 +160,21 @@ export default () => {
           </AvatarContainer>
           <PContainer>
             <StyledP
-              style={
-                breakpoints.sm ? { textIndent: "0px" } : { textIndent: "20px" }
-              }
+              style={sm ? { textIndent: "0px" } : { textIndent: "20px" }}
             >
               Hi, I'm Hunt. I founded huntCodes in 2018 to help businesses
-              create lightning fast, SEO optimized, mobile-first websites and
-              full stack applications. I've worked to upgrade existing sites
-              with new look and built entirely from scratch!
+              create lightning fast, SEO optimized, mobile-first websites. We
+              can upgrade existing sites with a fresh look or build new from
+              scratch! We've been primarily building sites with Gatsby and
+              server-less solutions, but we're open to any technology, mobile
+              development, games, IoT!
             </StyledP>
             <StyledP
-              style={
-                breakpoints.sm ? { textIndent: "0px" } : { textIndent: "20px" }
-              }
+              style={sm ? { textIndent: "0px" } : { textIndent: "20px" }}
             >
-              I've been primarily building sites with Gatsby and server-less
-              solutions, but I'm open to any technology, mobile development,
-              games, IoT! Visit my blog,{" "}
+              I'm always eager to learn tips and technologies! Please reach out
+              the with any suggestions or ideas using the form below. To see
+              some of my side projects and coding interests visit my blog,{" "}
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -211,9 +185,7 @@ export default () => {
               !
             </StyledP>
             <LinkButtonRow
-              style={
-                breakpoints.sm ? { margin: "auto" } : { marginLeft: "auto" }
-              }
+              style={sm ? { margin: "auto" } : { marginLeft: "auto" }}
               title="Download pdf"
               href={Resume}
               target="_blank"
@@ -227,8 +199,8 @@ export default () => {
               />
             </LinkButtonRow>
           </PContainer>
-        </ContentGrid>
-      </AboutContainer>
+        </TwoColGrid>
+      </SectionColumn>
     </>
   )
 }

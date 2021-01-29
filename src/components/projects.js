@@ -11,17 +11,11 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons"
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
+import { Title } from "../utils/library"
 
 //above the imported img can be used from Gatsby image component for lazy loading
 
 const CardTitle = styled.h4`
-  color: #293e60;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  margin-bottom: 1rem;
-`
-
-const Title = styled.h2`
   color: #293e60;
   text-align: center;
   font-family: "Raleway", sans-serif;

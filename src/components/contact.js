@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import Recaptcha from "react-google-recaptcha"
 import { motion } from "framer-motion"
+import { SectionColumn } from "../utils/library"
 
 //recaptcha key check
 
@@ -31,7 +32,7 @@ function encode(data) {
 }
 
 const AboutContainer = styled.div`
-  width: 100%;
+  /* width: 100%; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 4px;
@@ -279,8 +280,9 @@ export default () => {
   return (
     <>
       <Divider id="contact" />
-      <Title>Contact Me</Title>
-      <AboutContainer>
+
+      <SectionColumn>
+        <Title>Contact Me</Title>
         {success ? (
           <StyledResponse success={success}>
             Thank you! You'll receive a response via the email provided ASAP!
@@ -308,7 +310,7 @@ export default () => {
                 <Label htmlFor="first">Name</Label>
               </Column>
             </Row>
-            <Column end>
+            <Column end="true">
               <Label htmlFor="message">Message</Label>
               <TextArea
                 value={message}
@@ -367,7 +369,7 @@ export default () => {
             borderRadius: ["20%", "20%", "50%", "50%", "20%"],
           }}
         /> */}
-      </AboutContainer>
+      </SectionColumn>
     </>
   )
 }
