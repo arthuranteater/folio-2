@@ -71,10 +71,6 @@ const CircleAvatar = styled.img`
   margin-bottom: 20px;
 `
 
-const PContainer = styled.div`
-  /* grid-area: p; */
-`
-
 const StyledP = styled.p`
   padding: 10px;
   /* text-indent: 20px; */

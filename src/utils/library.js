@@ -39,7 +39,6 @@ export const SectionColumn = styled.div`
   transition: 0.3s;
   border-radius: 4px;
   background: white;
-  background: #fffdd0;
   display: flex;
   flex-direction: column;
   align-items: center;
