@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import Recaptcha from "react-google-recaptcha"
 import { motion } from "framer-motion"
-import { SectionColumn } from "../utils/library"
+import { SectionColumn, Title } from "../utils/library"
 
 //recaptcha key check
 
@@ -40,13 +40,6 @@ const AboutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
-
-const Title = styled.h2`
-  color: #293e60;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  margin-bottom: 1rem;
 `
 
 const Divider = styled.div`
@@ -280,9 +273,8 @@ export default () => {
   return (
     <>
       <Divider id="contact" />
-
+      <Title>Contact Me</Title>
       <SectionColumn>
-        <Title>Contact Me</Title>
         {success ? (
           <StyledResponse success={success}>
             Thank you! You'll receive a response via the email provided ASAP!
