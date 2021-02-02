@@ -15,7 +15,7 @@ import {
   faChevronLeft,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons"
-import { SectionColumn } from "../utils/library"
+import { SectionColumn, Title } from "../utils/library"
 
 const sites = [
   {
@@ -41,11 +41,11 @@ const sites = [
   },
 ]
 
-const Title = styled.h2`
-  color: #293e60;
-  font-family: Raleway, sans-serif;
-  margin-bottom: 2rem;
-`
+// const Title = styled.h2`
+//   color: #293e60;
+//   font-family: Raleway, sans-serif;
+//   margin-bottom: 2rem;
+// `
 
 const IphoneX = styled.div`
   position: relative;

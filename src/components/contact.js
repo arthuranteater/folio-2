@@ -233,7 +233,7 @@ export default () => {
   const [{ err, success }, setStatus] = useState({ err: "", success: false })
   const [message, setMessage] = useState("")
   const recaptchaRef = useRef()
-  const breakpoints = useBreakpoint()
+  const { sm } = useBreakpoint()
 
   const handleSubmit = e => {
     console.log("submitting")
@@ -298,7 +298,7 @@ export default () => {
             <noscript>
               <p>This form won’t work with Javascript disabled</p>
             </noscript>
-            <Row small={breakpoints.sm}>
+            <Row small={sm}>
               <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="message" value={message} />
               <Column>
@@ -315,7 +315,7 @@ export default () => {
               <TextArea
                 value={message}
                 onChange={e => setMessage(e.target.value)}
-                small={breakpoints.sm}
+                small={sm}
                 required
               />
               <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />

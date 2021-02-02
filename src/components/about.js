@@ -154,7 +154,7 @@ export default () => {
               ))}
             </IconsRow>
           </AvatarContainer>
-          <PContainer>
+          <div>
             <StyledP
               style={sm ? { textIndent: "0px" } : { textIndent: "20px" }}
             >
@@ -194,7 +194,7 @@ export default () => {
                 size="lg"
               />
             </LinkButtonRow>
-          </PContainer>
+          </div>
         </TwoColGrid>
       </SectionColumn>
     </>
