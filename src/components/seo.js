@@ -50,7 +50,7 @@ function SEO({ description, lang, meta, title, image, altImg, url, author }) {
         lang,
       }}
       title={metaTitle}
-      titleTemplate={metaTitle ? `%s | ${metaTitle}` : null}
+      // titleTemplate={metaTitle ? `%s | ${metaTitle}` : null}
       meta={[
         {
           name: `description`,
