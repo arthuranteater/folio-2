@@ -10,39 +10,63 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title, image, altImg, url, author }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            title
-            description
-            author
+            defaultTitle: title
+            defaultAuthor: author
+            defaultUrl: siteUrl
+            defaultDescription: description
+            defaultImage: image
+            defaultAlt: altImg
           }
         }
       }
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const {
+    defaultTitle,
+    defaultAuthor,
+    defaultUrl,
+    defaultDescription,
+    defaultImage,
+    defaultAlt,
+  } = site.siteMetadata
+
+  const metaTitle = title || defaultTitle
+  const metaAuthor = author || defaultAuthor
+  const metaUrl = url || defaultUrl
+  const metaDescription = description || defaultDescription
+  const metaImage = image || defaultImage
+  const metaAltImg = altImg || defaultAlt
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      title={metaTitle}
+      titleTemplate={metaTitle ? `%s | ${metaTitle}` : null}
       meta={[
         {
           name: `description`,
           content: metaDescription,
         },
         {
+          property: `og:url`,
+          content: metaUrl,
+        },
+        {
+          property: `og:site_name`,
+          content: metaTitle,
+        },
+        {
           property: `og:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           property: `og:description`,
@@ -53,16 +77,28 @@ function SEO({ description, lang, meta, title }) {
           content: `website`,
         },
         {
+          property: `og:image`,
+          content: metaImage,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: metaAuthor || ``,
+        },
+        {
+          name: `twitter:image`,
+          content: metaImage,
+        },
+        {
+          name: `twitter:image:alt`,
+          content: metaAltImg,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           name: `twitter:description`,
@@ -77,6 +113,11 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
+  title: ``,
+  image: ``,
+  altImg: ``,
+  url: ``,
+  author: ``,
 }
 
 SEO.propTypes = {
@@ -84,6 +125,10 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  altImg: PropTypes.string,
+  url: PropTypes.string,
+  author: PropTypes.string,
 }
 
 export default SEO

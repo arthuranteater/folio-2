@@ -14,6 +14,7 @@ const IndexPage = () => (
   <>
     <Helmet>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="canonical" href="https://www.huntcodes.co" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
         href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
@@ -25,7 +26,7 @@ const IndexPage = () => (
       />
     </Helmet>
     <Layout>
-      <SEO title="Home" />
+      <SEO />
       <Intro />
       <Carousel />
       <Projects />

@@ -55,8 +55,13 @@ export const Title = styled.h2`
   margin-top: 1rem;
   margin-bottom: 1rem;
 `
+//spacing
 
-//columns
+export const Divider = styled.div`
+  margin-bottom: 100px;
+`
+
+//column grids
 
 export const TwoColGrid = styled.div`
   display: grid;
@@ -66,7 +71,33 @@ export const TwoColGrid = styled.div`
   padding: 2rem;
 `
 
+//row grids
+
+export const TwoRowFormGrid = styled.form`
+  margin-top: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 20px;
+  padding: 2rem;
+`
+
 //avatar
+
+export const AvatarContainer = styled.div`
+  max-width: 200px;
+  height: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const CircleAvatar = styled.img`
+  border-radius: 50%;
+  border: 2px solid #293e60;
+  width: 100%;
+  margin-bottom: 20px;
+`
 
 //carousel
 

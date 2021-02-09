@@ -18,7 +18,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 
 import Anteater from "../images/anteater_sm_80.png"
-import { SectionColumn, Title, TwoColGrid } from "../utils/library"
+import { SectionColumn, Title, TwoColGrid, Divider } from "../utils/library"
 
 const profiles = [
   {
@@ -42,16 +42,6 @@ const profiles = [
   },
   { site: "Blog", address: "https://arthuranteater.com/" },
 ]
-
-const AboutContainer = styled.div`
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 4px;
-`
-
-const Divider = styled.div`
-  margin-bottom: 100px;
-`
 
 const AvatarContainer = styled.div`
   max-width: 200px;
@@ -78,7 +68,7 @@ const StyledP = styled.p`
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 `
-const StyledH = styled.h4`
+const ButtonTitle = styled.h4`
   opacity: 0.9;
 `
 const LinkButtonRow = styled.a`
@@ -93,7 +83,7 @@ const LinkButtonRow = styled.a`
   font-family: Raleway, sans-serif;
   font-size: large;
   text-decoration: none;
-  &:hover ${StyledH} {
+  &:hover ${ButtonTitle} {
     opacity: 1;
   }
   &:hover {
@@ -187,7 +177,7 @@ export default () => {
               target="_blank"
               rel="noreferrer"
             >
-              <StyledH>Resume</StyledH>
+              <ButtonTitle>Resume</ButtonTitle>
               <FontAwesomeIcon
                 style={{ marginLeft: "10px" }}
                 icon={faFileDownload}

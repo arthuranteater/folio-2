@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import Recaptcha from "react-google-recaptcha"
 import { motion } from "framer-motion"
-import { SectionColumn, Title } from "../utils/library"
+import { SectionColumn, Title, Divider, TwoRowFormGrid } from "../utils/library"
 
 //recaptcha key check
 
@@ -30,29 +30,6 @@ function encode(data) {
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&")
 }
-
-const AboutContainer = styled.div`
-  /* width: 100%; */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
-const Divider = styled.div`
-  margin-bottom: 100px;
-`
-
-const FormGrid = styled.form`
-  margin-top: 2rem;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-gap: 20px;
-  padding: 2rem;
-`
 
 const StyledH = styled.h4`
   opacity: 0.9;
@@ -280,7 +257,7 @@ export default () => {
             Thank you! You'll receive a response via the email provided ASAP!
           </StyledResponse>
         ) : (
-          <FormGrid
+          <TwoRowFormGrid
             name="contact"
             method="post"
             data-netlify="true"
@@ -319,7 +296,7 @@ export default () => {
                 <FontAwesomeIcon icon={faPaperPlane} size="lg" />
               </ButtonRow>
             </Column>
-          </FormGrid>
+          </TwoRowFormGrid>
         )}
         {/* <motion.div
           animate={{
