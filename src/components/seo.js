@@ -41,7 +41,7 @@ function SEO({ description, lang, meta, title, image, altImg, url, author }) {
   const metaAuthor = author || defaultAuthor
   const metaUrl = url || defaultUrl
   const metaDescription = description || defaultDescription
-  const metaImage = image || defaultImage
+  const metaImage = `${defaultUrl}${image || defaultImage}`
   const metaAltImg = altImg || defaultAlt
 
   return (
